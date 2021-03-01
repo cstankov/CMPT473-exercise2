@@ -1,3 +1,5 @@
+csv2json -t TestData/TestFiles/testCase9.csv TestOutput/Files/testCase9Output.json
+
 diff TestOutput/Files/testCase9Output.json TestData/ExpectedOutput/expectedOutput9.json
 
 Output and Expected Files Match

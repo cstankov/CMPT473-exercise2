@@ -1,4 +1,4 @@
-diff TestOutput/Files/testCase8Output.json TestData/ExpectedOutput/expectedOutput8.json
+csv2jsonTestData/TestFiles/testCase8.csv TestOutput/Files/random/testCase8Output.json
 
-Output and Expected Files DO NOT Match
+Error: Invalid output file path
 

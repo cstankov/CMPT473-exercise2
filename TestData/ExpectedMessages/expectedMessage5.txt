@@ -1,3 +1,5 @@
+csv2jsonTestData/TestFiles/testCase5.csv TestOutput/Files/testCase5Output.json
+
 diff TestOutput/Files/testCase5Output.json TestData/ExpectedOutput/expectedOutput5.json
 
 Output and Expected Files Match

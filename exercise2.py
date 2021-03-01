@@ -19,8 +19,7 @@ testName7 = "Invalid input path"
 testName8 = "Invalid output path"
 testName9 = "Option -t and file is separated with commas for a non empty record."
 
-def createInputPath(testNum):
-    inputFile = "testCase" + str(testNum) + ".csv"
+def createInputPath(testNum, inputFile):
     return (inputPath + inputFile)
 
 def createExpectedOutputPath(testNum):
@@ -31,8 +30,7 @@ def createExpectedMessagePath(testNum):
     expectedMessageFile = "expectedMessage" + str(testNum) + ".txt"
     return expectedMessagePath + expectedMessageFile
 
-def createOutputPath(testNum):
-    outputFile = "testCase" + str(testNum) + "Output.json"
+def createOutputPath(testNum, outputFile):
     return outputPath + outputFile
 
 def createMessageOutputPath(testNum):
@@ -96,10 +94,10 @@ def compareMessages(testNum, messageOutputFilePath, expectedMessagePath):
 
 def runTest(testNum, testName, inputFile, outputFile, d_flag = False, s_flag = False, t_flag=False):
     print('Running Test: ' + str(testNum) + ' - ' + testName + "\n")
-    inputFilePath = createInputPath(testNum)
+    inputFilePath = createInputPath(testNum, inputFile)
     expectedOutputFilePath = createExpectedOutputPath(testNum)
     expectedMessagePath = createExpectedMessagePath(testNum)
-    outputFilePath = createOutputPath(testNum)
+    outputFilePath = createOutputPath(testNum, outputFile)
     messageOutputFilePath = createMessageOutputPath(testNum)
 
     commandLineArg = createCommandLineArgForTest(inputFilePath, outputFilePath, d_flag, s_flag, t_flag)
@@ -130,7 +128,7 @@ def runAllTests():
     #test case 6
     runTest(6, testName6, "testCase6.csv", "testCase6Output.json", s_flag=True)
     #test case 7
-    runTest(7, testName7, "testCase7.csv", "testCase7Output.json")
+    runTest(7, testName7, "testCase77.csv", "testCase7Output.json")
     #test case 8
     runTest(8, testName8, "testCase8.csv", "random/testCase8Output.json")
     #test case 9
