@@ -25,26 +25,10 @@
       <basechoices />
       <invalidValues />
     </Parameter>
-    <Parameter id="6" name="Fields_separated_with_commas" type="2">
-      <values>
-        <value>true</value>
-        <value>false</value>
-      </values>
-      <basechoices />
-      <invalidValues />
-    </Parameter>
     <Parameter id="7" name="Contents_of_file_length" type="1">
       <values>
         <value>GREATER_THAN_ZERO_REC</value>
         <value>ZERO_REC</value>
-      </values>
-      <basechoices />
-      <invalidValues />
-    </Parameter>
-    <Parameter id="8" name="Fields_separated_with_tabs" type="2">
-      <values>
-        <value>true</value>
-        <value>false</value>
       </values>
       <basechoices />
       <invalidValues />
@@ -81,6 +65,15 @@
       <basechoices />
       <invalidValues />
     </Parameter>
+    <Parameter id="13" name="Field_separator" type="1">
+      <values>
+        <value>commas</value>
+        <value>tabs</value>
+        <value>none</value>
+      </values>
+      <basechoices />
+      <invalidValues />
+    </Parameter>
   </Parameters>
   <OutputParameters />
   <Relations />
@@ -95,39 +88,31 @@
         <Parameter name="Output_file" />
       </Parameters>
     </Constraint>
-    <Constraint text="(Fields_separated_with_tabs = true) =&gt; Fields_separated_with_commas = false">
-      <Parameters>
-        <Parameter name="Fields_separated_with_tabs" />
-        <Parameter name="Fields_separated_with_commas" />
-      </Parameters>
-    </Constraint>
-    <Constraint text="(Fields_separated_with_tabs = false) =&gt; Fields_separated_with_commas = true&#xD;&#xA;">
-      <Parameters>
-        <Parameter name="Fields_separated_with_tabs" />
-        <Parameter name="Fields_separated_with_commas" />
-      </Parameters>
-    </Constraint>
-    <Constraint text="(Valid_input_path  = false)  =&gt; (Numeric_and_boolean_vals_present  = false &amp;&amp; Fields_separated_with_tabs  = false &amp;&amp; Fields_separated_with_commas  = true &amp;&amp; Option_d = false &amp;&amp; Option_s = false)">
+    <Constraint text="Valid_input_path = false =&gt; Valid_output_path = true">
       <Parameters>
         <Parameter name="Valid_input_path" />
-        <Parameter name="Numeric_and_boolean_vals_present" />
-        <Parameter name="Fields_separated_with_tabs" />
-        <Parameter name="Fields_separated_with_commas" />
-        <Parameter name="Option_d" />
-        <Parameter name="Option_s" />
+        <Parameter name="Valid_output_path" />
       </Parameters>
     </Constraint>
-    <Constraint text="(Valid_output_path  = false)  =&gt; (Numeric_and_boolean_vals_present  = false &amp;&amp; Fields_separated_with_tabs  = false &amp;&amp; Fields_separated_with_commas  = true &amp;&amp; Option_d = false &amp;&amp; Option_s = false)">
+    <Constraint text="(Valid_output_path  = false)  =&gt; (Numeric_and_boolean_vals_present  = false &amp;&amp; Option_d = false &amp;&amp; Option_s = false &amp;&amp; Field_separator = &quot;none&quot;)">
       <Parameters>
         <Parameter name="Valid_output_path" />
         <Parameter name="Numeric_and_boolean_vals_present" />
-        <Parameter name="Fields_separated_with_tabs" />
-        <Parameter name="Fields_separated_with_commas" />
         <Parameter name="Option_d" />
         <Parameter name="Option_s" />
+        <Parameter name="Field_separator" />
       </Parameters>
     </Constraint>
-    <Constraint text="Contents_of_file_length = &quot;ZERO_REC&quot; =&gt; Numeric_and_boolean_vals_present = false &amp;&amp; Option_d = false &amp;&amp; Option_s = false &amp;&amp; Valid_input_path = true &amp;&amp; Valid_output_path = true &amp;&amp; Fields_separated_with_tabs = true">
+    <Constraint text="(Valid_input_path  = false)  =&gt; (Numeric_and_boolean_vals_present  = false &amp;&amp; Option_d = false &amp;&amp; Option_s = false &amp;&amp; Field_separator = &quot;none&quot;)">
+      <Parameters>
+        <Parameter name="Valid_input_path" />
+        <Parameter name="Numeric_and_boolean_vals_present" />
+        <Parameter name="Option_d" />
+        <Parameter name="Option_s" />
+        <Parameter name="Field_separator" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="Contents_of_file_length = &quot;ZERO_REC&quot; =&gt; Numeric_and_boolean_vals_present = false &amp;&amp; Option_d = false &amp;&amp; Option_s = false &amp;&amp; Valid_input_path = true &amp;&amp; Valid_output_path = true &amp;&amp; Field_separator = &quot;none&quot;">
       <Parameters>
         <Parameter name="Contents_of_file_length" />
         <Parameter name="Numeric_and_boolean_vals_present" />
@@ -135,7 +120,15 @@
         <Parameter name="Option_s" />
         <Parameter name="Valid_input_path" />
         <Parameter name="Valid_output_path" />
-        <Parameter name="Fields_separated_with_tabs" />
+        <Parameter name="Field_separator" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="Field_separator = &quot;none&quot; =&gt; (Valid_input_path = false || Valid_output_path = false || Contents_of_file_length = &quot;ZERO_REC&quot;)">
+      <Parameters>
+        <Parameter name="Field_separator" />
+        <Parameter name="Valid_input_path" />
+        <Parameter name="Valid_output_path" />
+        <Parameter name="Contents_of_file_length" />
       </Parameters>
     </Constraint>
   </Constraints>
@@ -143,106 +136,98 @@
     <Testcase TCNo="0">
       <Value>1</Value>
       <Value>true</Value>
-      <Value>true</Value>
       <Value>false</Value>
       <Value>false</Value>
       <Value>GREATER_THAN_ZERO_REC</Value>
-      <Value>true</Value>
       <Value>disk</Value>
       <Value>disk</Value>
       <Value>true</Value>
       <Value>true</Value>
+      <Value>commas</Value>
     </Testcase>
     <Testcase TCNo="1">
       <Value>2</Value>
-      <Value>true</Value>
       <Value>false</Value>
       <Value>true</Value>
       <Value>true</Value>
       <Value>GREATER_THAN_ZERO_REC</Value>
-      <Value>false</Value>
       <Value>disk</Value>
       <Value>disk</Value>
       <Value>true</Value>
       <Value>true</Value>
+      <Value>commas</Value>
     </Testcase>
     <Testcase TCNo="2">
       <Value>3</Value>
-      <Value>false</Value>
       <Value>true</Value>
       <Value>true</Value>
       <Value>false</Value>
       <Value>GREATER_THAN_ZERO_REC</Value>
-      <Value>true</Value>
       <Value>disk</Value>
       <Value>disk</Value>
       <Value>true</Value>
       <Value>true</Value>
+      <Value>tabs</Value>
     </Testcase>
     <Testcase TCNo="3">
       <Value>4</Value>
       <Value>false</Value>
       <Value>false</Value>
-      <Value>false</Value>
       <Value>true</Value>
       <Value>GREATER_THAN_ZERO_REC</Value>
-      <Value>false</Value>
       <Value>disk</Value>
       <Value>disk</Value>
-      <Value>false</Value>
-      <Value>false</Value>
+      <Value>true</Value>
+      <Value>true</Value>
+      <Value>tabs</Value>
     </Testcase>
     <Testcase TCNo="4">
       <Value>5</Value>
       <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>ZERO_REC</Value>
+      <Value>disk</Value>
+      <Value>disk</Value>
+      <Value>true</Value>
+      <Value>true</Value>
+      <Value>none</Value>
+    </Testcase>
+    <Testcase TCNo="5">
+      <Value>6</Value>
       <Value>true</Value>
       <Value>false</Value>
       <Value>true</Value>
       <Value>GREATER_THAN_ZERO_REC</Value>
-      <Value>false</Value>
       <Value>disk</Value>
       <Value>disk</Value>
       <Value>true</Value>
       <Value>true</Value>
-    </Testcase>
-    <Testcase TCNo="5">
-      <Value>6</Value>
-      <Value>false</Value>
-      <Value>false</Value>
-      <Value>false</Value>
-      <Value>false</Value>
-      <Value>ZERO_REC</Value>
-      <Value>true</Value>
-      <Value>disk</Value>
-      <Value>disk</Value>
-      <Value>true</Value>
-      <Value>true</Value>
+      <Value>commas</Value>
     </Testcase>
     <Testcase TCNo="6">
       <Value>7</Value>
       <Value>false</Value>
       <Value>false</Value>
       <Value>false</Value>
-      <Value>true</Value>
       <Value>GREATER_THAN_ZERO_REC</Value>
-      <Value>false</Value>
       <Value>disk</Value>
       <Value>disk</Value>
       <Value>false</Value>
       <Value>true</Value>
+      <Value>none</Value>
     </Testcase>
     <Testcase TCNo="7">
       <Value>8</Value>
       <Value>false</Value>
       <Value>false</Value>
       <Value>false</Value>
-      <Value>true</Value>
       <Value>GREATER_THAN_ZERO_REC</Value>
-      <Value>false</Value>
       <Value>disk</Value>
       <Value>disk</Value>
       <Value>true</Value>
       <Value>false</Value>
+      <Value>none</Value>
     </Testcase>
   </Testset>
   <Header>
@@ -250,19 +235,18 @@
     <Value>NUMERIC_AND_BOOLEAN_VALS_PRESENT</Value>
     <Value>OPTION_D</Value>
     <Value>OPTION_S</Value>
-    <Value>FIELDS_SEPARATED_WITH_COMMAS</Value>
     <Value>CONTENTS_OF_FILE_LENGTH</Value>
-    <Value>FIELDS_SEPARATED_WITH_TABS</Value>
     <Value>INPUT_FILE</Value>
     <Value>OUTPUT_FILE</Value>
     <Value>VALID_INPUT_PATH</Value>
     <Value>VALID_OUTPUT_PATH</Value>
+    <Value>FIELD_SEPARATOR</Value>
   </Header>
   <Stat-Data>
-    <ExecutionTime>0.044</ExecutionTime>
-    <MaxDomainSize>2</MaxDomainSize>
+    <ExecutionTime>0.079</ExecutionTime>
+    <MaxDomainSize>3</MaxDomainSize>
     <MinDomainSize>2</MinDomainSize>
-    <TotalNoOfCombination>126</TotalNoOfCombination>
+    <TotalNoOfCombination>106</TotalNoOfCombination>
     <TotalNoOfTests>8</TotalNoOfTests>
     <Algorithm>IPOG</Algorithm>
   </Stat-Data>

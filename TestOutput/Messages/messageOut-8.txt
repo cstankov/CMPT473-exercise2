@@ -1,2 +1,6 @@
-Error: Invalid output file path
+csv2jsonTestData/TestFiles/testCase8.csv TestOutput/Files/testCase8Output.json
+
+diff TestOutput/Files/testCase8Output.json TestData/ExpectedOutput/expectedOutput8.json
+
+Output and Expected Files DO NOT Match
 

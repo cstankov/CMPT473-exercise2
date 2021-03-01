@@ -1,3 +1,3 @@
-John    Doe    jefferson st.    Riverside       NJ   32     True
-Jack    McGinnis    hobo Av.    Phila   PA      09      False
-John Da Man     Repici      Jefferson St.   Riverside   NJ   92     True
+John,Doe,jefferson st.,Riverside,NJ,32,True
+Jack,McGinnis,hobo Av.,Phila,PA,09,False
+John Da Man,Repici,Jefferson St.,Riverside,NJ,92,True
