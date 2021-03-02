@@ -46,17 +46,17 @@ def createCommandLineArgForTest(inputFilePath, outputFilePath, d_flag, s_flag, t
         options += " -s ' ' "
     if (t_flag == True):
         options += " -t "
-    commandLineArg = 'csv2json'+ options + inputFilePath + ' ' + outputFilePath
+    commandLineArg = 'csv2json '+ options + inputFilePath + ' ' + outputFilePath
     return commandLineArg
  
 def runCommandLineIfValid(commandLineArg, inputFilePath, outputFilePath, messageOutputFilePath, expectedMessagePath):
     validPath = False
     if os.path.exists(inputFilePath) == False:
-        message = 'Error: Invalid input file path'
+        message = 'Error: Invalid input file path\n'
         with open(messageOutputFilePath, 'a') as file:
             file.write((message + '\n\n'))
     elif os.path.exists(outputFilePath) == False:
-        message = 'Error: Invalid output file path'
+        message = 'Error: Invalid output file path\n'
         with open(messageOutputFilePath, 'a') as file:
             file.write((message + '\n\n'))
     else:
@@ -71,13 +71,13 @@ def compareFiles(outputFilePath, expectedOutputFilePath, messageOutputFilePath):
  
     msg = ""
     if filecmp.cmp(outputFilePath, expectedOutputFilePath):
-        msg = 'Output and Expected Files Match'
+        msg = 'Output and Expected Files Match\n'
     else:
-        msg = 'Output and Expected Files DO NOT Match'
+        msg = 'Output and Expected Files DO NOT Match\n'
  
     with open(messageOutputFilePath, 'a') as file:
-            file.write((commandLine + '\n\n')) 
-            file.write((msg + '\n\n'))  
+        file.write((commandLine + '\n\n')) 
+        file.write((msg + '\n\n'))  
     return
  
 def compareMessages(testNum, messageOutputFilePath, expectedMessagePath):
@@ -85,9 +85,9 @@ def compareMessages(testNum, messageOutputFilePath, expectedMessagePath):
     os.system(commandLineArg)
  
     if filecmp.cmp(messageOutputFilePath, expectedMessagePath):
-        msg = 'Test ' + str(testNum) + ' Passed: Output message matched the expected out message.'
+        msg = 'Test ' + str(testNum) + ' Passed: Output message matched the expected out message.\n'
     else:
-        msg = 'Test ' + str(testNum) + ' Failed: Output message did not match the expected out message.'
+        msg = 'Test ' + str(testNum) + ' Failed: Output message did not match the expected out message.\n'
  
     print(msg)
     return
@@ -110,6 +110,7 @@ def runTest(testNum, testName, inputFile, outputFile, d_flag = False, s_flag = F
     if validPath:
         compareFiles(outputFilePath, expectedOutputFilePath, messageOutputFilePath)
     compareMessages(testNum, messageOutputFilePath, expectedMessagePath)
+    print("=================================\n")
  
  
 def runAllTests():

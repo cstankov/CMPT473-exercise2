@@ -1,4 +1,5 @@
-csv2jsonTestData/TestFiles/testCase8.csv TestOutput/Files/random/testCase8Output.json
+csv2json TestData/TestFiles/testCase8.csv TestOutput/Files/random/testCase8Output.json
 
 Error: Invalid output file path
+
 

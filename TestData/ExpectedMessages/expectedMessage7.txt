@@ -1,4 +1,5 @@
-csv2jsonTestData/TestFiles/testCase77.csv TestOutput/Files/testCase7Output.json
+csv2json TestData/TestFiles/testCase77.csv TestOutput/Files/testCase7Output.json
 
 Error: Invalid input file path
+
 

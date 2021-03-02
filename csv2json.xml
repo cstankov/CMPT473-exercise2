@@ -9,7 +9,7 @@
       <basechoices />
       <invalidValues />
     </Parameter>
-    <Parameter id="4" name="Option_d" type="2">
+    <Parameter id="2" name="Option_d" type="2">
       <values>
         <value>true</value>
         <value>false</value>
@@ -17,7 +17,7 @@
       <basechoices />
       <invalidValues />
     </Parameter>
-    <Parameter id="5" name="Option_s" type="2">
+    <Parameter id="3" name="Option_s" type="2">
       <values>
         <value>true</value>
         <value>false</value>
@@ -25,7 +25,7 @@
       <basechoices />
       <invalidValues />
     </Parameter>
-    <Parameter id="7" name="Contents_of_file_length" type="1">
+    <Parameter id="4" name="Contents_of_file_length" type="1">
       <values>
         <value>GREATER_THAN_ZERO_REC</value>
         <value>ZERO_REC</value>
@@ -33,7 +33,7 @@
       <basechoices />
       <invalidValues />
     </Parameter>
-    <Parameter id="9" name="Input_file" type="1">
+    <Parameter id="5" name="Input_file" type="1">
       <values>
         <value>stdin</value>
         <value>disk</value>
@@ -41,7 +41,7 @@
       <basechoices />
       <invalidValues />
     </Parameter>
-    <Parameter id="10" name="Output_file" type="1">
+    <Parameter id="6" name="Output_file" type="1">
       <values>
         <value>stdin</value>
         <value>disk</value>
@@ -49,7 +49,7 @@
       <basechoices />
       <invalidValues />
     </Parameter>
-    <Parameter id="11" name="Valid_input_path" type="2">
+    <Parameter id="7" name="Valid_input_path" type="2">
       <values>
         <value>true</value>
         <value>false</value>
@@ -57,7 +57,7 @@
       <basechoices />
       <invalidValues />
     </Parameter>
-    <Parameter id="12" name="Valid_output_path" type="2">
+    <Parameter id="8" name="Valid_output_path" type="2">
       <values>
         <value>true</value>
         <value>false</value>
@@ -65,11 +65,19 @@
       <basechoices />
       <invalidValues />
     </Parameter>
-    <Parameter id="13" name="Field_separator" type="1">
+    <Parameter id="0" name="Field_separator" type="1">
       <values>
         <value>commas</value>
         <value>tabs</value>
         <value>none</value>
+      </values>
+      <basechoices />
+      <invalidValues />
+    </Parameter>
+    <Parameter id="9" name="option_t" type="2">
+      <values>
+        <value>true</value>
+        <value>false</value>
       </values>
       <basechoices />
       <invalidValues />
@@ -94,41 +102,56 @@
         <Parameter name="Valid_output_path" />
       </Parameters>
     </Constraint>
-    <Constraint text="(Valid_output_path  = false)  =&gt; (Numeric_and_boolean_vals_present  = false &amp;&amp; Option_d = false &amp;&amp; Option_s = false &amp;&amp; Field_separator = &quot;none&quot;)">
-      <Parameters>
-        <Parameter name="Valid_output_path" />
-        <Parameter name="Numeric_and_boolean_vals_present" />
-        <Parameter name="Option_d" />
-        <Parameter name="Option_s" />
-        <Parameter name="Field_separator" />
-      </Parameters>
-    </Constraint>
-    <Constraint text="(Valid_input_path  = false)  =&gt; (Numeric_and_boolean_vals_present  = false &amp;&amp; Option_d = false &amp;&amp; Option_s = false &amp;&amp; Field_separator = &quot;none&quot;)">
-      <Parameters>
-        <Parameter name="Valid_input_path" />
-        <Parameter name="Numeric_and_boolean_vals_present" />
-        <Parameter name="Option_d" />
-        <Parameter name="Option_s" />
-        <Parameter name="Field_separator" />
-      </Parameters>
-    </Constraint>
-    <Constraint text="Contents_of_file_length = &quot;ZERO_REC&quot; =&gt; Numeric_and_boolean_vals_present = false &amp;&amp; Option_d = false &amp;&amp; Option_s = false &amp;&amp; Valid_input_path = true &amp;&amp; Valid_output_path = true &amp;&amp; Field_separator = &quot;none&quot;">
-      <Parameters>
-        <Parameter name="Contents_of_file_length" />
-        <Parameter name="Numeric_and_boolean_vals_present" />
-        <Parameter name="Option_d" />
-        <Parameter name="Option_s" />
-        <Parameter name="Valid_input_path" />
-        <Parameter name="Valid_output_path" />
-        <Parameter name="Field_separator" />
-      </Parameters>
-    </Constraint>
     <Constraint text="Field_separator = &quot;none&quot; =&gt; (Valid_input_path = false || Valid_output_path = false || Contents_of_file_length = &quot;ZERO_REC&quot;)">
       <Parameters>
         <Parameter name="Field_separator" />
         <Parameter name="Valid_input_path" />
         <Parameter name="Valid_output_path" />
         <Parameter name="Contents_of_file_length" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="(Valid_output_path  = false)  =&gt; (Numeric_and_boolean_vals_present  = false &amp;&amp; Option_d = false &amp;&amp; Option_s = false &amp;&amp; option_t = false &amp;&amp; Field_separator = &quot;none&quot;)">
+      <Parameters>
+        <Parameter name="Valid_output_path" />
+        <Parameter name="Numeric_and_boolean_vals_present" />
+        <Parameter name="Option_d" />
+        <Parameter name="Option_s" />
+        <Parameter name="option_t" />
+        <Parameter name="Field_separator" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="(Valid_input_path  = false)  =&gt; (Numeric_and_boolean_vals_present  = false &amp;&amp; Option_d = false &amp;&amp; Option_s = false &amp;&amp; option_t = false &amp;&amp; Field_separator = &quot;none&quot;)">
+      <Parameters>
+        <Parameter name="Valid_input_path" />
+        <Parameter name="Numeric_and_boolean_vals_present" />
+        <Parameter name="Option_d" />
+        <Parameter name="Option_s" />
+        <Parameter name="option_t" />
+        <Parameter name="Field_separator" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="Contents_of_file_length = &quot;ZERO_REC&quot; =&gt; Numeric_and_boolean_vals_present = false &amp;&amp; Option_d = false &amp;&amp; Option_s = false &amp;&amp; option_t = false &amp;&amp; Valid_input_path = true &amp;&amp; Valid_output_path = true &amp;&amp; Field_separator = &quot;none&quot;">
+      <Parameters>
+        <Parameter name="Contents_of_file_length" />
+        <Parameter name="Numeric_and_boolean_vals_present" />
+        <Parameter name="Option_d" />
+        <Parameter name="Option_s" />
+        <Parameter name="option_t" />
+        <Parameter name="Valid_input_path" />
+        <Parameter name="Valid_output_path" />
+        <Parameter name="Field_separator" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="option_t = true =&gt; Option_s = false">
+      <Parameters>
+        <Parameter name="option_t" />
+        <Parameter name="Option_s" />
+      </Parameters>
+    </Constraint>
+    <Constraint text="Option_s = true =&gt; option_t = false">
+      <Parameters>
+        <Parameter name="Option_s" />
+        <Parameter name="option_t" />
       </Parameters>
     </Constraint>
   </Constraints>
@@ -144,6 +167,7 @@
       <Value>true</Value>
       <Value>true</Value>
       <Value>commas</Value>
+      <Value>false</Value>
     </Testcase>
     <Testcase TCNo="1">
       <Value>2</Value>
@@ -156,6 +180,7 @@
       <Value>true</Value>
       <Value>true</Value>
       <Value>commas</Value>
+      <Value>false</Value>
     </Testcase>
     <Testcase TCNo="2">
       <Value>3</Value>
@@ -168,6 +193,7 @@
       <Value>true</Value>
       <Value>true</Value>
       <Value>tabs</Value>
+      <Value>true</Value>
     </Testcase>
     <Testcase TCNo="3">
       <Value>4</Value>
@@ -180,6 +206,7 @@
       <Value>true</Value>
       <Value>true</Value>
       <Value>tabs</Value>
+      <Value>false</Value>
     </Testcase>
     <Testcase TCNo="4">
       <Value>5</Value>
@@ -192,6 +219,7 @@
       <Value>true</Value>
       <Value>true</Value>
       <Value>none</Value>
+      <Value>false</Value>
     </Testcase>
     <Testcase TCNo="5">
       <Value>6</Value>
@@ -204,6 +232,7 @@
       <Value>true</Value>
       <Value>true</Value>
       <Value>commas</Value>
+      <Value>false</Value>
     </Testcase>
     <Testcase TCNo="6">
       <Value>7</Value>
@@ -216,6 +245,7 @@
       <Value>false</Value>
       <Value>true</Value>
       <Value>none</Value>
+      <Value>false</Value>
     </Testcase>
     <Testcase TCNo="7">
       <Value>8</Value>
@@ -228,6 +258,20 @@
       <Value>true</Value>
       <Value>false</Value>
       <Value>none</Value>
+      <Value>false</Value>
+    </Testcase>
+    <Testcase TCNo="8">
+      <Value>9</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>false</Value>
+      <Value>GREATER_THAN_ZERO_REC</Value>
+      <Value>disk</Value>
+      <Value>disk</Value>
+      <Value>true</Value>
+      <Value>true</Value>
+      <Value>commas</Value>
+      <Value>true</Value>
     </Testcase>
   </Testset>
   <Header>
@@ -241,13 +285,14 @@
     <Value>VALID_INPUT_PATH</Value>
     <Value>VALID_OUTPUT_PATH</Value>
     <Value>FIELD_SEPARATOR</Value>
+    <Value>OPTION_T</Value>
   </Header>
   <Stat-Data>
-    <ExecutionTime>0.079</ExecutionTime>
+    <ExecutionTime>0.028</ExecutionTime>
     <MaxDomainSize>3</MaxDomainSize>
     <MinDomainSize>2</MinDomainSize>
-    <TotalNoOfCombination>106</TotalNoOfCombination>
-    <TotalNoOfTests>8</TotalNoOfTests>
+    <TotalNoOfCombination>135</TotalNoOfCombination>
+    <TotalNoOfTests>9</TotalNoOfTests>
     <Algorithm>IPOG</Algorithm>
   </Stat-Data>
 </System>
